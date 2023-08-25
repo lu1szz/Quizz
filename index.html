@@ -1,0 +1,72 @@
+<!DOCTYPE html> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Quizz</h1>
+<p>Bem-vindo ao Quiz! Responda corretamente para avançar e ganhar pontos.</p>
+
+<div id="quiz">
+  <h2>Pergunta 1:</h2>
+  <p>Qual é a fórmula da área de um triângulo?</p>
+  <i class="fa-solid fa-play"></i>  
+  <input type="text" id="resposta1">
+  <button onclick="verificarResposta(1)">Responder</button>
+</div>
+
+<script>
+let pontos = 0;
+let tentativas = 2;
+
+function verificarResposta(pergunta) {
+  const respostaInput = document.getElementById(`resposta${pergunta}`).value;
+  let mensagem = '';
+
+  if (pergunta === 1 && respostaInput.toLowerCase() === 'base * altura / 2') {
+    pontos += 10;
+    mensagem = 'Resposta correta! Você ganhou 10 pontos.';
+    mostrarProximaPergunta(2);
+  } else if (pergunta === 2 && respostaInput.toLowerCase() === 'newton') {
+    pontos += 10;
+    mensagem = 'Resposta correta! Você ganhou 10 pontos.';
+    mostrarProximaPergunta(3);
+  } else if (pergunta === 3 && respostaInput.toLowerCase() === 'o3') {
+    pontos += 10;
+    mensagem = 'Resposta correta! Você ganhou 10 pontos e concluiu o Quiz.';
+  } else {
+    tentativas--;
+
+    if (tentativas > 0) {
+      mensagem = `Resposta incorreta. Você tem mais ${tentativas} tentativa(s).`;
+    } else {
+      mensagem = 'Você errou todas as tentativas. Reinicie o Quiz.';
+      tentativas = 2;
+    }
+  }
+
+  alert(mensagem);
+}
+
+function mostrarProximaPergunta(proximaPergunta) {
+  document.getElementById('quiz').innerHTML = `
+    <h2>Pergunta ${proximaPergunta}:</h2>
+    <p>Próxima pergunta...</p>
+    <input type="text" id="resposta${proximaPergunta}">
+    <button onclick="verificarResposta(${proximaPergunta})">Responder</button>
+  `;
+}
+</script>
+
+</body>
+</html>
+    
+
+
+
+
+
+
+
